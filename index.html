@@ -25,180 +25,237 @@
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
-  .nav-btn { background: var(--red); color: var(--white); padding: 0.5rem 1.2rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; }
+  .nav-btn { background: var(--red); color: var(--white); padding: 0.5rem 1.2rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; white-space: nowrap; }
   .nav-btn:hover { opacity: 0.8; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.2s; }
+  .mobile-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; background: var(--black); border-top: 1px solid rgba(255,255,255,0.1); z-index: 99; flex-direction: column; padding: 1rem 5%; gap: 0; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-weight: 500; }
+  .mobile-menu a:last-child { border-bottom: none; color: var(--red); }
 
   /* HERO */
-  .hero { padding-top: 5rem; display: grid; grid-template-rows: auto 1fr; min-height: 100vh; }
-  .hero-top { background: var(--black); padding: 1rem 5%; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; }
-  .hero-top p { color: rgba(255,255,255,0.4); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .hero { padding-top: 56px; display: grid; grid-template-rows: auto 1fr; min-height: 100vh; }
+  .hero-top { background: var(--black); padding: 0.7rem 5%; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.3rem; }
+  .hero-top p { color: rgba(255,255,255,0.4); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
   .hero-main { display: grid; grid-template-columns: 1fr 1fr; }
   .hero-left { background: var(--black); padding: 4rem 5%; display: flex; flex-direction: column; justify-content: center; }
   .hero-issue { color: var(--red); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 2rem; }
-  .hero-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 7vw, 8rem); color: var(--white); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 0.5rem; }
+  .hero-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 7vw, 8rem); color: var(--white); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 0.5rem; }
   .hero-left h1 span { color: var(--red); }
-  .hero-sub-text { font-family: 'Crimson Pro', serif; font-style: italic; color: rgba(255,255,255,0.5); font-size: 1.2rem; margin-bottom: 3rem; line-height: 1.5; }
-  .hero-left p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.8; margin-bottom: 2.5rem; max-width: 420px; font-weight: 300; }
+  .hero-sub-text { font-family: 'Crimson Pro', serif; font-style: italic; color: rgba(255,255,255,0.5); font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.5; }
+  .hero-left p { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.8; margin-bottom: 2rem; max-width: 420px; font-weight: 300; }
   .hero-cta { display: inline-flex; align-items: center; gap: 1rem; }
-  .btn-red { background: var(--red); color: var(--white); padding: 0.9rem 2rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; }
+  .btn-red { background: var(--red); color: var(--white); padding: 0.9rem 2rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; display: inline-block; }
   .btn-red:hover { opacity: 0.8; }
-  .hero-right { background: var(--light-gray); padding: 4rem 5%; display: flex; flex-direction: column; gap: 2rem; justify-content: center; }
+  .hero-right { background: var(--light-gray); padding: 3rem 5%; display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; }
   .editorial-card { border-top: 3px solid var(--black); padding-top: 1.2rem; }
-  .ec-tag { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 0.6rem; }
-  .ec-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.03em; line-height: 1; margin-bottom: 0.5rem; }
-  .ec-text { font-size: 0.83rem; color: var(--gray); line-height: 1.6; }
-  .price-callout { background: var(--red); padding: 1.5rem; color: var(--white); }
-  .pc-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.3rem; }
-  .pc-price { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; }
-  .pc-sub { font-size: 0.78rem; opacity: 0.8; margin-top: 0.2rem; }
+  .ec-tag { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 0.5rem; }
+  .ec-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.03em; line-height: 1; margin-bottom: 0.4rem; }
+  .ec-text { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
+  .price-callout { background: var(--red); padding: 1.3rem; color: var(--white); }
+  .pc-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.2rem; }
+  .pc-price { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; }
+  .pc-sub { font-size: 0.75rem; opacity: 0.8; margin-top: 0.2rem; }
 
   /* MARQUEE */
   .marquee { background: var(--red); overflow: hidden; padding: 0.7rem 0; }
   .marquee-inner { display: inline-flex; gap: 3rem; white-space: nowrap; animation: scroll 18s linear infinite; }
-  .marquee-item { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--white); letter-spacing: 0.1em; }
+  .marquee-item { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--white); letter-spacing: 0.1em; }
   @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+  /* SECTIONS */
+  .section { padding: 4rem 5%; }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid var(--black); padding-bottom: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 0.5rem; }
+  .section-label-ed { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 0.03em; }
+  .section-header span { font-size: 0.75rem; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; }
+
   /* SERVICES */
-  .section { padding: 5rem 5%; }
-  .section-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid var(--black); padding-bottom: 1rem; margin-bottom: 3rem; }
-  .section-label-ed { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.03em; }
-  .section-header span { font-size: 0.78rem; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; }
   .svc-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 2px solid var(--black); }
-  .svc-item { padding: 2rem 1.5rem; border-right: 1px solid var(--black); }
+  .svc-item { padding: 1.8rem 1.2rem; border-right: 1px solid var(--black); transition: background 0.2s; }
   .svc-item:last-child { border-right: none; }
   .svc-item:hover { background: var(--black); color: var(--white); }
   .svc-item:hover .svc-num { color: var(--red); }
-  .svc-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--light-gray); line-height: 1; margin-bottom: 0.7rem; transition: color 0.2s; }
-  .svc-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; }
-  .svc-desc { font-size: 0.78rem; color: var(--gray); line-height: 1.6; }
   .svc-item:hover .svc-desc { color: rgba(255,255,255,0.6); }
+  .svc-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--light-gray); line-height: 1; margin-bottom: 0.6rem; transition: color 0.2s; }
+  .svc-name { font-weight: 700; font-size: 0.88rem; margin-bottom: 0.4rem; }
+  .svc-desc { font-size: 0.75rem; color: var(--gray); line-height: 1.6; }
 
   /* PRICING */
-  .pricing-editorial { background: var(--black); padding: 5rem 5%; }
+  .pricing-editorial { background: var(--black); padding: 4rem 5%; }
   .pricing-editorial .section-label-ed { color: var(--white); }
   .pricing-editorial .section-header { border-color: rgba(255,255,255,0.15); }
   .pricing-editorial .section-header span { color: rgba(255,255,255,0.4); }
   .pricing-cols { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
   .p-left { color: var(--white); }
-  .p-big { font-family: 'Bebas Neue', sans-serif; font-size: 8rem; color: var(--red); line-height: 0.9; }
-  .p-left p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.7; margin-top: 1rem; }
+  .p-big { font-family: 'Bebas Neue', sans-serif; font-size: 7rem; color: var(--red); line-height: 0.9; }
+  .p-left p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.7; margin-top: 0.8rem; }
   .p-table { width: 100%; border-collapse: collapse; }
-  .p-table th { color: rgba(255,255,255,0.35); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: left; padding: 0 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .p-table td { color: rgba(255,255,255,0.75); font-size: 0.88rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: middle; }
+  .p-table th { color: rgba(255,255,255,0.35); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: left; padding: 0 0 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .p-table td { color: rgba(255,255,255,0.75); font-size: 0.88rem; padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: middle; }
   .p-table td:nth-child(2) { font-weight: 700; color: var(--white); }
   .p-table td:last-child { color: var(--red); font-weight: 700; }
-  .p-cta { display: inline-block; background: var(--red); color: var(--white); padding: 1rem 2.5rem; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; margin-top: 2.5rem; transition: opacity 0.2s; }
+  .p-cta { display: inline-block; background: var(--red); color: var(--white); padding: 0.9rem 2.2rem; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; margin-top: 2rem; transition: opacity 0.2s; }
   .p-cta:hover { opacity: 0.8; }
 
   /* RUSH PRICING */
   .rush-section { background: #111; padding: 4rem 5%; }
-  .rush-section .section-header { border-color: rgba(255,255,255,0.1); margin-bottom: 1rem; }
+  .rush-section .section-header { border-color: rgba(255,255,255,0.1); }
   .rush-section .section-label-ed { color: var(--red); }
   .rush-section .section-header span { color: rgba(255,255,255,0.35); }
   .rush-note { color: rgba(255,255,255,0.45); font-size: 0.82rem; margin-bottom: 2rem; line-height: 1.6; }
   .rush-note strong { color: var(--red); }
-  .rush-table { width: 100%; border-collapse: collapse; }
-  .rush-table th { color: rgba(255,255,255,0.35); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; text-align: left; padding: 0.6rem 0.8rem; border-bottom: 2px solid rgba(255,255,255,0.08); white-space: nowrap; }
+  .rush-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .rush-tabs::-webkit-scrollbar { display: none; }
+  .rush-tab { background: none; border: none; color: rgba(255,255,255,0.35); font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: 0.08em; padding: 0.6rem 1.3rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; }
+  .rush-tab.active { color: var(--red); border-bottom-color: var(--red); }
+  .rush-tab:hover { color: rgba(255,255,255,0.7); }
+  .rush-panel { display: none; padding-top: 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .rush-panel.active { display: block; }
+  .rush-table { width: 100%; border-collapse: collapse; min-width: 500px; }
+  .rush-table th { color: rgba(255,255,255,0.35); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; text-align: left; padding: 0.6rem 0.8rem; border-bottom: 2px solid rgba(255,255,255,0.08); white-space: nowrap; }
   .rush-table td { font-size: 0.82rem; padding: 0.85rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
   .rush-table tr:last-child td { border-bottom: none; }
   .rush-table td:first-child { color: rgba(255,255,255,0.7); }
-  .rush-table td.normal { color: rgba(255,255,255,0.5); font-size: 0.78rem; }
-  .rush-table td.rush { color: #fff; font-weight: 600; }
-  .rush-table td.rush-price { color: var(--red); font-weight: 700; }
-  .rush-table td.na { color: rgba(255,255,255,0.15); font-size: 0.75rem; text-align: center; }
-  .rush-badge { display: inline-block; background: var(--red); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.45rem; letter-spacing: 0.06em; text-transform: uppercase; margin-left: 0.3rem; vertical-align: middle; }
-  .rush-tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .rush-tab { background: none; border: none; color: rgba(255,255,255,0.35); font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.08em; padding: 0.6rem 1.5rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
-  .rush-tab.active { color: var(--red); border-bottom-color: var(--red); }
-  .rush-tab:hover { color: rgba(255,255,255,0.7); }
-  .rush-panel { display: none; padding-top: 1.5rem; }
-  .rush-panel.active { display: block; }
+  .rush-table td.t-normal { color: rgba(255,255,255,0.45); font-size: 0.78rem; }
+  .rush-table td.t-rush { color: #fff; font-weight: 700; }
+  .rush-table td.t-price { color: var(--red); font-weight: 700; font-size: 0.92rem; }
+  .rush-table td.t-na { color: rgba(255,255,255,0.15); font-size: 0.75rem; text-align: center; }
+  .rush-badge { display: inline-block; background: var(--red); color: #fff; font-size: 0.6rem; font-weight: 700; padding: 0.12rem 0.4rem; letter-spacing: 0.06em; text-transform: uppercase; margin-left: 0.4rem; vertical-align: middle; }
+  .rush-unavail { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.35); font-size: 0.82rem; padding: 1.2rem 1.5rem; margin-top: 1.5rem; line-height: 1.5; }
+  .rush-unavail strong { color: rgba(255,255,255,0.55); }
 
   /* PROCESS */
   .process-strip { display: grid; grid-template-columns: repeat(4, 1fr); border: 2px solid var(--black); }
-  .ps-step { padding: 2.5rem 2rem; position: relative; }
+  .ps-step { padding: 2rem 1.5rem; position: relative; }
   .ps-step:not(:last-child) { border-right: 1px solid var(--black); }
-  .ps-num { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: var(--light-gray); line-height: 0.85; margin-bottom: 0.5rem; }
-  .ps-title { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
-  .ps-desc { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
+  .ps-num { font-family: 'Bebas Neue', sans-serif; font-size: 4.5rem; color: var(--light-gray); line-height: 0.85; margin-bottom: 0.5rem; }
+  .ps-title { font-weight: 700; font-size: 0.88rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+  .ps-desc { font-size: 0.78rem; color: var(--gray); line-height: 1.6; }
 
-  /* REVIEWS SECTION */
-  .reviews-section { background: var(--light-gray); padding: 5rem 5%; }
+  /* REVIEWS */
+  .reviews-section { background: var(--light-gray); padding: 4rem 5%; }
   .reviews-section .section-header { border-color: var(--black); }
-  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-  .rev-block { break-inside: avoid; border: 1.5px solid var(--black); padding: 1.5rem; background: var(--white); }
-  .rb-stars { color: var(--red); font-size: 0.85rem; margin-bottom: 0.8rem; }
-  .rb-text { font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-style: italic; color: var(--black); line-height: 1.6; margin-bottom: 0.8rem; }
-  .rb-meta { display: flex; flex-direction: column; gap: 0.2rem; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .rev-block { border: 1.5px solid var(--black); padding: 1.5rem; background: var(--white); }
+  .rb-stars { color: var(--red); font-size: 0.85rem; margin-bottom: 0.7rem; }
+  .rb-text { font-family: 'Crimson Pro', serif; font-size: 1rem; font-style: italic; color: var(--black); line-height: 1.6; margin-bottom: 0.8rem; }
   .rb-author { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
-  .rb-subject { font-size: 0.7rem; color: var(--gray); }
-  .reviews-loading { text-align: center; padding: 3rem; color: var(--gray); font-size: 0.88rem; }
-  .reviews-empty { text-align: center; padding: 3rem; color: var(--gray); font-size: 0.88rem; border: 1.5px dashed var(--gray); }
+  .rb-subject { font-size: 0.68rem; color: var(--gray); margin-top: 0.2rem; }
+  .reviews-loading { text-align: center; padding: 2.5rem; color: var(--gray); font-size: 0.85rem; }
+  .reviews-empty { text-align: center; padding: 2.5rem; color: var(--gray); font-size: 0.85rem; border: 1.5px dashed var(--gray); }
 
   /* REVIEW FORM */
-  .review-form-section { background: var(--black); padding: 5rem 5%; }
+  .review-form-section { background: var(--black); padding: 4rem 5%; }
   .review-form-section .section-header { border-color: rgba(255,255,255,0.15); }
   .review-form-section .section-label-ed { color: var(--white); }
   .review-form-section .section-header span { color: rgba(255,255,255,0.4); }
-  .rf-note { color: rgba(255,255,255,0.4); font-size: 0.82rem; margin-bottom: 2.5rem; line-height: 1.6; }
+  .rf-note { color: rgba(255,255,255,0.4); font-size: 0.82rem; margin-bottom: 2rem; line-height: 1.6; }
   .review-form { max-width: 700px; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
   .rf-full { grid-column: span 2; }
-  .review-form label { display: block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.4rem; font-weight: 600; }
+  .review-form label { display: block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.4rem; font-weight: 600; }
   .review-form input, .review-form textarea, .review-form select {
     width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
     color: var(--white); padding: 0.75rem 1rem; font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem; outline: none; transition: border-color 0.2s;
+    font-size: 0.85rem; outline: none; transition: border-color 0.2s; -webkit-appearance: none;
   }
-  .review-form input:focus, .review-form textarea:focus, .review-form select:focus { border-color: var(--red); }
+  .review-form input:focus, .review-form textarea:focus { border-color: var(--red); }
   .review-form textarea { resize: vertical; min-height: 100px; }
-  .review-form select option { background: #1a1a1a; }
-  .star-selector { display: flex; gap: 0.5rem; flex-direction: row-reverse; justify-content: flex-end; }
+  .star-selector { display: flex; gap: 0.4rem; flex-direction: row-reverse; justify-content: flex-end; }
   .star-selector input { display: none; }
-  .star-selector label { font-size: 1.8rem; cursor: pointer; color: rgba(255,255,255,0.2); transition: color 0.15s; letter-spacing: 0.1rem; }
+  .star-selector label { font-size: 1.8rem; cursor: pointer; color: rgba(255,255,255,0.2); transition: color 0.15s; }
   .star-selector input:checked ~ label,
   .star-selector label:hover,
   .star-selector label:hover ~ label { color: var(--red); }
-  .rf-submit { background: var(--red); color: var(--white); border: none; padding: 0.9rem 2.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; }
+  .rf-submit { background: var(--red); color: var(--white); border: none; padding: 0.9rem 2.2rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; }
   .rf-submit:hover { opacity: 0.8; }
   .rf-submit:disabled { opacity: 0.4; cursor: not-allowed; }
-  .rf-success { display: none; background: rgba(224,49,49,0.1); border: 1px solid var(--red); color: rgba(255,255,255,0.8); padding: 1rem 1.5rem; font-size: 0.85rem; margin-top: 1rem; line-height: 1.6; grid-column: span 2; }
-  .rf-error { display: none; background: rgba(255,100,100,0.1); border: 1px solid rgba(255,100,100,0.4); color: rgba(255,150,150,0.9); padding: 1rem 1.5rem; font-size: 0.85rem; margin-top: 1rem; grid-column: span 2; }
+  .rf-success { display: none; background: rgba(224,49,49,0.1); border: 1px solid var(--red); color: rgba(255,255,255,0.8); padding: 1rem 1.5rem; font-size: 0.83rem; margin-top: 0.5rem; line-height: 1.6; grid-column: span 2; }
+  .rf-error { display: none; background: rgba(255,100,100,0.1); border: 1px solid rgba(255,100,100,0.4); color: rgba(255,150,150,0.9); padding: 1rem 1.5rem; font-size: 0.83rem; margin-top: 0.5rem; grid-column: span 2; }
 
   /* FAQ */
   .faq-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 2px solid var(--black); }
-  .faq-item-ed { padding: 2rem; border-bottom: 1px solid var(--black); }
+  .faq-item-ed { padding: 1.8rem; border-bottom: 1px solid var(--black); }
   .faq-item-ed:nth-child(odd) { border-right: 1px solid var(--black); }
   .faq-item-ed:last-child, .faq-item-ed:nth-last-child(2):nth-child(odd) { border-bottom: none; }
-  .faq-q-ed { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.03em; margin-bottom: 0.7rem; }
-  .faq-a-ed { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
+  .faq-q-ed { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.03em; margin-bottom: 0.6rem; }
+  .faq-a-ed { font-size: 0.8rem; color: var(--gray); line-height: 1.7; }
 
   /* CTA */
-  .cta-editorial { background: var(--red); padding: 6rem 5%; }
-  .cta-editorial h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 7rem); color: var(--white); line-height: 0.9; margin-bottom: 2rem; letter-spacing: 0.02em; }
-  .cta-editorial p { color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.7; max-width: 500px; margin-bottom: 2.5rem; font-weight: 300; }
+  .cta-editorial { background: var(--red); padding: 5rem 5%; }
+  .cta-editorial h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 7rem); color: var(--white); line-height: 0.9; margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+  .cta-editorial p { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.7; max-width: 500px; margin-bottom: 2.5rem; font-weight: 300; }
   .btn-white { background: var(--white); color: var(--red); padding: 1rem 2.5rem; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
   .btn-white:hover { opacity: 0.85; }
 
-  footer { background: var(--black); padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-  footer p { color: rgba(255,255,255,0.35); font-size: 0.75rem; }
-  footer a { color: rgba(255,255,255,0.5); font-size: 0.75rem; text-decoration: none; }
+  footer { background: var(--black); padding: 1.8rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  footer p { color: rgba(255,255,255,0.35); font-size: 0.72rem; }
+  footer a { color: rgba(255,255,255,0.5); font-size: 0.72rem; text-decoration: none; }
   footer a:hover { color: var(--red); }
 
+  /* ─── RESPONSIVE ─────────────────────────────────────────────── */
   @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    /* Hero */
     .hero-main { grid-template-columns: 1fr; }
+    .hero-top { justify-content: center; text-align: center; }
+    .hero-top p:not(:first-child) { display: none; }
+    .hero-left { padding: 3rem 5% 2rem; }
+    .hero-right { padding: 2rem 5% 3rem; gap: 1.2rem; }
+
+    /* Services */
     .svc-list { grid-template-columns: 1fr 1fr; }
-    .pricing-cols { grid-template-columns: 1fr; }
+    .svc-item:nth-child(2) { border-right: none; }
+    .svc-item:nth-child(3), .svc-item:nth-child(4) { border-top: 1px solid var(--black); }
+    .svc-item:nth-child(4) { border-right: none; }
+    .svc-item:nth-child(5) { border-top: 1px solid var(--black); border-right: none; grid-column: span 2; }
+
+    /* Pricing */
+    .pricing-cols { grid-template-columns: 1fr; gap: 2rem; }
+    .p-big { font-size: 5rem; }
+
+    /* Process */
     .process-strip { grid-template-columns: 1fr 1fr; }
+    .ps-step:nth-child(2) { border-right: none; }
+    .ps-step:nth-child(3), .ps-step:nth-child(4) { border-top: 1px solid var(--black); }
+    .ps-step:nth-child(4) { border-right: none; }
+
+    /* FAQ */
     .faq-cols { grid-template-columns: 1fr; }
+    .faq-item-ed:nth-child(odd) { border-right: none; }
+    .faq-item-ed:nth-last-child(2) { border-bottom: 1px solid var(--black); }
+    .faq-item-ed:last-child { border-bottom: none; }
+
+    /* Review form */
     .review-form { grid-template-columns: 1fr; }
     .rf-full, .rf-success, .rf-error { grid-column: span 1; }
-    .nav-links { display: none; }
-    .rush-tabs { flex-wrap: wrap; }
+  }
+
+  @media (max-width: 560px) {
+    nav { padding: 0.9rem 4%; }
+    .logo-text { font-size: 1.5rem; }
+    .section { padding: 3rem 4%; }
+    .pricing-editorial, .rush-section, .review-form-section { padding: 3rem 4%; }
+    .hero-left { padding: 2.5rem 4% 1.5rem; }
+    .hero-right { padding: 1.5rem 4% 2.5rem; }
+    .svc-list { grid-template-columns: 1fr; }
+    .svc-item { border-right: none !important; border-top: 1px solid var(--black); grid-column: auto !important; }
+    .svc-item:first-child { border-top: none; }
+    .process-strip { grid-template-columns: 1fr; }
+    .ps-step { border-right: none !important; border-top: 1px solid var(--black); }
+    .ps-step:first-child { border-top: none; }
+    .faq-cols { grid-template-columns: 1fr; }
+    .cta-editorial { padding: 3.5rem 4%; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="#" class="logo-text">Assignment<span>Ace</span></a>
   <ul class="nav-links">
@@ -208,8 +265,20 @@
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <a href="mailto:assignment.ace23@gmail.com" class="nav-btn">Get Started</a>
+  <div class="nav-hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#rush" onclick="closeMenu()">Rush Delivery</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="mailto:assignment.ace23@gmail.com" onclick="closeMenu()">✉ Get Started</a>
+</div>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-top">
     <p>Academic Writing Experts — UK Students</p>
@@ -230,12 +299,12 @@
       <div class="editorial-card">
         <div class="ec-tag">Our Promise</div>
         <div class="ec-title">Zero AI. 100% Human.</div>
-        <div class="ec-text">Every piece of work is crafted entirely by experienced human writers. No AI tools, no shortcuts — just genuine academic expertise.</div>
+        <div class="ec-text">Every piece is crafted entirely by experienced human writers. No AI tools, no shortcuts — just genuine academic expertise.</div>
       </div>
       <div class="editorial-card">
         <div class="ec-tag">Plagiarism Free</div>
         <div class="ec-title">Original Work. Guaranteed.</div>
-        <div class="ec-text">All assignments are checked for plagiarism before delivery. Every piece written fresh from scratch for your specific brief.</div>
+        <div class="ec-text">All assignments are checked for plagiarism before delivery. Written fresh from scratch for your specific brief.</div>
       </div>
       <div class="price-callout">
         <div class="pc-label">Starting From</div>
@@ -246,6 +315,7 @@
   </div>
 </section>
 
+<!-- MARQUEE -->
 <div class="marquee">
   <div class="marquee-inner">
     <span class="marquee-item">ZERO AI CONTENT</span><span class="marquee-item">·</span>
@@ -295,12 +365,12 @@
       <table class="p-table">
         <thead><tr><th>Word Count</th><th>Estimated Cost</th><th>Delivery Time</th></tr></thead>
         <tbody>
-          <tr><td>Up to 1,000 words</td><td>£22</td><td>3 days</td></tr>
-          <tr><td>Up to 2,000 words</td><td>£44</td><td>3 days</td></tr>
-          <tr><td>Up to 3,000 words</td><td>£66</td><td>4 days</td></tr>
-          <tr><td>Up to 4,000 words</td><td>£88</td><td>5 days</td></tr>
-          <tr><td>Up to 5,000 words</td><td>£110</td><td>6 days</td></tr>
-          <tr><td>Up to 6,000 words</td><td>£132</td><td>7 days</td></tr>
+          <tr><td>Up to 1,000 words</td><td>£22</td><td>1 day</td></tr>
+          <tr><td>Up to 2,000 words</td><td>£44</td><td>2 days</td></tr>
+          <tr><td>Up to 3,000 words</td><td>£66</td><td>3 days</td></tr>
+          <tr><td>Up to 4,000 words</td><td>£88</td><td>4 days</td></tr>
+          <tr><td>Up to 5,000 words</td><td>£110</td><td>5 days</td></tr>
+          <tr><td>Up to 6,000 words</td><td>£132</td><td>6 days</td></tr>
         </tbody>
       </table>
       <a href="mailto:assignment.ace23@gmail.com?subject=Custom%20Quote%20Request" class="p-cta">Get a Custom Quote →</a>
@@ -314,22 +384,36 @@
     <div class="section-label-ed">Rush Delivery <span class="rush-badge">Express</span></div>
     <span>Need It Faster? We've Got You.</span>
   </div>
-  <p class="rush-note">Need your assignment sooner than the standard timeline? We offer express delivery — the earlier you need it, the higher the priority surcharge. <strong>Minimum turnaround is always 3 days.</strong></p>
+  <p class="rush-note">Need your assignment sooner than standard? We offer express delivery with a priority surcharge. <strong>Minimum turnaround is always 2 days.</strong></p>
 
   <div class="rush-tabs">
-    <button class="rush-tab active" onclick="showRushTab('3k')">3,000 Words</button>
-    <button class="rush-tab" onclick="showRushTab('4k')">4,000 Words</button>
-    <button class="rush-tab" onclick="showRushTab('5k')">5,000 Words</button>
-    <button class="rush-tab" onclick="showRushTab('6k')">6,000 Words</button>
+    <button class="rush-tab active" onclick="showRushTab('2k',this)">2,000 Words</button>
+    <button class="rush-tab" onclick="showRushTab('3k',this)">3,000 Words</button>
+    <button class="rush-tab" onclick="showRushTab('4k',this)">4,000 Words</button>
+    <button class="rush-tab" onclick="showRushTab('5k',this)">5,000 Words</button>
+    <button class="rush-tab" onclick="showRushTab('6k',this)">6,000 Words</button>
   </div>
 
-  <!-- 3000 words -->
-  <div class="rush-panel active" id="rush-3k">
+  <!-- 2000 words — no rush available -->
+  <div class="rush-panel active" id="rush-2k">
     <table class="rush-table">
       <thead><tr><th>Delivery Option</th><th>Days</th><th>Base Price</th><th>Rush Surcharge</th><th>Total</th></tr></thead>
       <tbody>
-        <tr><td>Standard</td><td class="normal">4 days</td><td class="normal">£66</td><td class="normal">—</td><td class="rush-price">£66</td></tr>
-        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="rush">3 days</td><td class="normal">£66</td><td class="normal">+£14</td><td class="rush-price">£80</td></tr>
+        <tr><td>Standard</td><td class="t-normal">2 days</td><td class="t-normal">£44</td><td class="t-normal">—</td><td class="t-price">£44</td></tr>
+      </tbody>
+    </table>
+    <div class="rush-unavail">
+      <strong>No express option available for 2,000 words.</strong> Standard delivery is already at the 2-day minimum turnaround. Email us at assignment.ace23@gmail.com if you have an urgent requirement and we'll do our best.
+    </div>
+  </div>
+
+  <!-- 3000 words -->
+  <div class="rush-panel" id="rush-3k">
+    <table class="rush-table">
+      <thead><tr><th>Delivery Option</th><th>Days</th><th>Base Price</th><th>Rush Surcharge</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Standard</td><td class="t-normal">3 days</td><td class="t-normal">£66</td><td class="t-normal">—</td><td class="t-price">£66</td></tr>
+        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="t-rush">2 days</td><td class="t-normal">£66</td><td class="t-normal">+£14</td><td class="t-price">£80</td></tr>
       </tbody>
     </table>
   </div>
@@ -339,9 +423,9 @@
     <table class="rush-table">
       <thead><tr><th>Delivery Option</th><th>Days</th><th>Base Price</th><th>Rush Surcharge</th><th>Total</th></tr></thead>
       <tbody>
-        <tr><td>Standard</td><td class="normal">5 days</td><td class="normal">£88</td><td class="normal">—</td><td class="rush-price">£88</td></tr>
-        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="rush">4 days</td><td class="normal">£88</td><td class="normal">+£18</td><td class="rush-price">£106</td></tr>
-        <tr><td>2 Days Early <span class="rush-badge">+36%</span></td><td class="rush">3 days</td><td class="normal">£88</td><td class="normal">+£32</td><td class="rush-price">£120</td></tr>
+        <tr><td>Standard</td><td class="t-normal">4 days</td><td class="t-normal">£88</td><td class="t-normal">—</td><td class="t-price">£88</td></tr>
+        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="t-rush">3 days</td><td class="t-normal">£88</td><td class="t-normal">+£18</td><td class="t-price">£106</td></tr>
+        <tr><td>2 Days Early <span class="rush-badge">+36%</span></td><td class="t-rush">2 days</td><td class="t-normal">£88</td><td class="t-normal">+£32</td><td class="t-price">£120</td></tr>
       </tbody>
     </table>
   </div>
@@ -351,10 +435,10 @@
     <table class="rush-table">
       <thead><tr><th>Delivery Option</th><th>Days</th><th>Base Price</th><th>Rush Surcharge</th><th>Total</th></tr></thead>
       <tbody>
-        <tr><td>Standard</td><td class="normal">6 days</td><td class="normal">£110</td><td class="normal">—</td><td class="rush-price">£110</td></tr>
-        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="rush">5 days</td><td class="normal">£110</td><td class="normal">+£23</td><td class="rush-price">£133</td></tr>
-        <tr><td>2 Days Early <span class="rush-badge">+36%</span></td><td class="rush">4 days</td><td class="normal">£110</td><td class="normal">+£40</td><td class="rush-price">£150</td></tr>
-        <tr><td>3 Days Early <span class="rush-badge">+48%</span></td><td class="rush">3 days</td><td class="normal">£110</td><td class="normal">+£53</td><td class="rush-price">£163</td></tr>
+        <tr><td>Standard</td><td class="t-normal">5 days</td><td class="t-normal">£110</td><td class="t-normal">—</td><td class="t-price">£110</td></tr>
+        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="t-rush">4 days</td><td class="t-normal">£110</td><td class="t-normal">+£23</td><td class="t-price">£133</td></tr>
+        <tr><td>2 Days Early <span class="rush-badge">+36%</span></td><td class="t-rush">3 days</td><td class="t-normal">£110</td><td class="t-normal">+£40</td><td class="t-price">£150</td></tr>
+        <tr><td>3 Days Early <span class="rush-badge">+48%</span></td><td class="t-rush">2 days</td><td class="t-normal">£110</td><td class="t-normal">+£53</td><td class="t-price">£163</td></tr>
       </tbody>
     </table>
   </div>
@@ -364,11 +448,11 @@
     <table class="rush-table">
       <thead><tr><th>Delivery Option</th><th>Days</th><th>Base Price</th><th>Rush Surcharge</th><th>Total</th></tr></thead>
       <tbody>
-        <tr><td>Standard</td><td class="normal">7 days</td><td class="normal">£132</td><td class="normal">—</td><td class="rush-price">£132</td></tr>
-        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="rush">6 days</td><td class="normal">£132</td><td class="normal">+£28</td><td class="rush-price">£160</td></tr>
-        <tr><td>2 Days Early <span class="rush-badge">+36%</span></td><td class="rush">5 days</td><td class="normal">£132</td><td class="normal">+£48</td><td class="rush-price">£180</td></tr>
-        <tr><td>3 Days Early <span class="rush-badge">+48%</span></td><td class="rush">4 days</td><td class="normal">£132</td><td class="normal">+£63</td><td class="rush-price">£195</td></tr>
-        <tr><td>4 Days Early <span class="rush-badge">+60%</span></td><td class="rush">3 days</td><td class="normal">£132</td><td class="normal">+£79</td><td class="rush-price">£211</td></tr>
+        <tr><td>Standard</td><td class="t-normal">6 days</td><td class="t-normal">£132</td><td class="t-normal">—</td><td class="t-price">£132</td></tr>
+        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="t-rush">5 days</td><td class="t-normal">£132</td><td class="t-normal">+£28</td><td class="t-price">£160</td></tr>
+        <tr><td>2 Days Early <span class="rush-badge">+36%</span></td><td class="t-rush">4 days</td><td class="t-normal">£132</td><td class="t-normal">+£48</td><td class="t-price">£180</td></tr>
+        <tr><td>3 Days Early <span class="rush-badge">+48%</span></td><td class="t-rush">3 days</td><td class="t-normal">£132</td><td class="t-normal">+£63</td><td class="t-price">£195</td></tr>
+        <tr><td>4 Days Early <span class="rush-badge">+60%</span></td><td class="t-rush">2 days</td><td class="t-normal">£132</td><td class="t-normal">+£79</td><td class="t-price">£211</td></tr>
       </tbody>
     </table>
   </div>
@@ -388,7 +472,7 @@
   </div>
 </section>
 
-<!-- LIVE REVIEWS (Supabase) -->
+<!-- LIVE REVIEWS -->
 <section class="reviews-section" id="reviews">
   <div class="section-header">
     <div class="section-label-ed">Student Reviews</div>
@@ -399,13 +483,13 @@
   </div>
 </section>
 
-<!-- SUBMIT REVIEW (Supabase) -->
+<!-- SUBMIT REVIEW -->
 <section class="review-form-section" id="submit-review">
   <div class="section-header">
     <div class="section-label-ed">Leave A Review</div>
     <span>Share Your Experience</span>
   </div>
-  <p class="rf-note">Worked with us? We'd love to hear about your experience. Reviews are verified and published after a brief check — usually within 24 hours.</p>
+  <p class="rf-note">Worked with us? Share your experience. Reviews are verified and published after a brief check — usually within 24 hours.</p>
   <form class="review-form" id="reviewForm" onsubmit="submitReview(event)">
     <div>
       <label>Your Name *</label>
@@ -436,12 +520,8 @@
     <div class="rf-full">
       <button type="submit" class="rf-submit" id="rf-btn">Submit Review</button>
     </div>
-    <div class="rf-success" id="rf-success">
-      ✓ Thank you! Your review has been submitted and will appear after a quick verification — usually within 24 hours.
-    </div>
-    <div class="rf-error" id="rf-error">
-      Something went wrong. Please try again or email us directly at assignment.ace23@gmail.com
-    </div>
+    <div class="rf-success" id="rf-success">✓ Thank you! Your review has been submitted and will appear after a quick verification — usually within 24 hours.</div>
+    <div class="rf-error" id="rf-error">Something went wrong. Please try again or email assignment.ace23@gmail.com</div>
   </form>
 </section>
 
@@ -475,101 +555,76 @@
 </footer>
 
 <script>
-  // ── Supabase Init ──────────────────────────────────────────────
+  // ── Supabase ───────────────────────────────────────────────────
   const { createClient } = supabase;
   const sb = createClient(
     'https://xcprdszetwsbfttpqzch.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjcHJkc3pldHdzYmZ0dHBxemNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNzEzMDcsImV4cCI6MjA5NDk0NzMwN30.dICtZyPY88TpbT8fsQnpEyiK-quWWfnPUPNCgU9kU3A'
   );
 
-  // ── Load Reviews ───────────────────────────────────────────────
   async function loadReviews() {
-    const container = document.getElementById('reviews-container');
+    const c = document.getElementById('reviews-container');
     try {
-      const { data, error } = await sb
-        .from('reviews')
-        .select('name, university, subject, rating, review_text, created_at')
-        .eq('approved', true)
-        .order('created_at', { ascending: false });
-
+      const { data, error } = await sb.from('reviews').select('name,university,subject,rating,review_text,created_at').eq('approved',true).order('created_at',{ascending:false});
       if (error) throw error;
-
-      if (!data || data.length === 0) {
-        container.innerHTML = '<div class="reviews-empty">No reviews yet — be the first to share your experience!</div>';
-        return;
-      }
-
-      container.innerHTML = data.map(r => `
+      if (!data || data.length === 0) { c.innerHTML = '<div class="reviews-empty">No reviews yet — be the first to share your experience!</div>'; return; }
+      c.innerHTML = data.map(r => `
         <div class="rev-block">
-          <div class="rb-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
-          <div class="rb-text">"${escHtml(r.review_text)}"</div>
-          <div class="rb-meta">
-            <div class="rb-author">${escHtml(r.name)}</div>
-            ${r.university || r.subject ? `<div class="rb-subject">${[r.subject, r.university].filter(Boolean).map(escHtml).join(' · ')}</div>` : ''}
-          </div>
-        </div>
-      `).join('');
-    } catch (e) {
-      container.innerHTML = '<div class="reviews-empty">Could not load reviews right now. Please refresh the page.</div>';
-    }
+          <div class="rb-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+          <div class="rb-text">"${esc(r.review_text)}"</div>
+          <div class="rb-author">${esc(r.name)}</div>
+          ${r.university||r.subject ? `<div class="rb-subject">${[r.subject,r.university].filter(Boolean).map(esc).join(' · ')}</div>` : ''}
+        </div>`).join('');
+    } catch(e) { c.innerHTML = '<div class="reviews-empty">Could not load reviews. Please refresh.</div>'; }
   }
 
-  // ── Submit Review ──────────────────────────────────────────────
   async function submitReview(e) {
     e.preventDefault();
     const btn = document.getElementById('rf-btn');
-    const successEl = document.getElementById('rf-success');
-    const errorEl = document.getElementById('rf-error');
-    const ratingEl = document.querySelector('input[name="rating"]:checked');
-
-    successEl.style.display = 'none';
-    errorEl.style.display = 'none';
-
-    if (!ratingEl) {
-      errorEl.textContent = 'Please select a star rating before submitting.';
-      errorEl.style.display = 'block';
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = 'Submitting...';
-
+    const sEl = document.getElementById('rf-success');
+    const eEl = document.getElementById('rf-error');
+    const rat = document.querySelector('input[name="rating"]:checked');
+    sEl.style.display = 'none'; eEl.style.display = 'none';
+    if (!rat) { eEl.textContent = 'Please select a star rating.'; eEl.style.display = 'block'; return; }
+    btn.disabled = true; btn.textContent = 'Submitting...';
     try {
       const { error } = await sb.from('reviews').insert({
         name: document.getElementById('rf-name').value.trim(),
         university: document.getElementById('rf-uni').value.trim() || null,
         subject: document.getElementById('rf-subject').value.trim() || null,
-        rating: parseInt(ratingEl.value),
+        rating: parseInt(rat.value),
         review_text: document.getElementById('rf-text').value.trim(),
         approved: false
       });
-
       if (error) throw error;
-
-      successEl.style.display = 'block';
+      sEl.style.display = 'block';
       document.getElementById('reviewForm').reset();
-    } catch (err) {
-      errorEl.style.display = 'block';
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Submit Review';
-    }
+    } catch(err) { eEl.style.display = 'block'; }
+    finally { btn.disabled = false; btn.textContent = 'Submit Review'; }
   }
 
-  // ── Rush Pricing Tabs ──────────────────────────────────────────
-  function showRushTab(key) {
+  function showRushTab(key, el) {
     document.querySelectorAll('.rush-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.rush-panel').forEach(p => p.classList.remove('active'));
     document.getElementById('rush-' + key).classList.add('active');
-    event.target.classList.add('active');
+    el.classList.add('active');
   }
 
-  // ── Escape HTML helper ─────────────────────────────────────────
-  function escHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  function toggleMenu() {
+    const m = document.getElementById('mobileMenu');
+    m.classList.toggle('open');
   }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+    if (!menu.contains(e.target) && !hamburger.contains(e.target)) { menu.classList.remove('open'); }
+  });
 
-  // ── Init ───────────────────────────────────────────────────────
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
   loadReviews();
 </script>
 </body>
