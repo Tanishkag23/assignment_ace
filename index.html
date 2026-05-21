@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignment Ace — Academic Writing Experts</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f5f0;
+    --red: #e03131;
+    --gray: #888;
+    --light-gray: #e8e8e3;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Space Grotesk', sans-serif; background: var(--white); color: var(--black); }
+
+  /* NAV */
+  nav { position: fixed; top: 0; width: 100%; background: var(--black); z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; }
+  .logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--white); text-decoration: none; letter-spacing: 0.05em; }
+  .logo-text span { color: var(--red); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-btn { background: var(--red); color: var(--white); padding: 0.5rem 1.2rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; }
+  .nav-btn:hover { opacity: 0.8; }
+
+  /* HERO — EDITORIAL GRID */
+  .hero { padding-top: 5rem; display: grid; grid-template-rows: auto 1fr; min-height: 100vh; }
+  .hero-top { background: var(--black); padding: 1rem 5%; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; }
+  .hero-top p { color: rgba(255,255,255,0.4); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .hero-main { display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-left { background: var(--black); padding: 4rem 5%; display: flex; flex-direction: column; justify-content: center; }
+  .hero-issue { color: var(--red); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 2rem; }
+  .hero-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 7vw, 8rem); color: var(--white); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 0.5rem; }
+  .hero-left h1 span { color: var(--red); }
+  .hero-sub-text { font-family: 'Crimson Pro', serif; font-style: italic; color: rgba(255,255,255,0.5); font-size: 1.2rem; margin-bottom: 3rem; line-height: 1.5; }
+  .hero-left p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.8; margin-bottom: 2.5rem; max-width: 420px; font-weight: 300; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 1rem; }
+  .btn-red { background: var(--red); color: var(--white); padding: 0.9rem 2rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; }
+  .btn-red:hover { opacity: 0.8; }
+  .hero-right { background: var(--light-gray); padding: 4rem 5%; display: flex; flex-direction: column; gap: 2rem; justify-content: center; }
+  .editorial-card { border-top: 3px solid var(--black); padding-top: 1.2rem; }
+  .ec-tag { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 0.6rem; }
+  .ec-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.03em; line-height: 1; margin-bottom: 0.5rem; }
+  .ec-text { font-size: 0.83rem; color: var(--gray); line-height: 1.6; }
+  .price-callout { background: var(--red); padding: 1.5rem; color: var(--white); }
+  .pc-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.3rem; }
+  .pc-price { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; }
+  .pc-sub { font-size: 0.78rem; opacity: 0.8; margin-top: 0.2rem; }
+
+  /* MARQUEE */
+  .marquee { background: var(--red); overflow: hidden; padding: 0.7rem 0; }
+  .marquee-inner { display: inline-flex; gap: 3rem; white-space: nowrap; animation: scroll 18s linear infinite; }
+  .marquee-item { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--white); letter-spacing: 0.1em; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SERVICES */
+  .section { padding: 5rem 5%; }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid var(--black); padding-bottom: 1rem; margin-bottom: 3rem; }
+  .section-label-ed { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.03em; }
+  .section-header span { font-size: 0.78rem; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; }
+  .svc-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 2px solid var(--black); }
+  .svc-item { padding: 2rem 1.5rem; border-right: 1px solid var(--black); }
+  .svc-item:last-child { border-right: none; }
+  .svc-item:hover { background: var(--black); color: var(--white); }
+  .svc-item:hover .svc-num { color: var(--red); }
+  .svc-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--light-gray); line-height: 1; margin-bottom: 0.7rem; transition: color 0.2s; }
+  .svc-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .svc-desc { font-size: 0.78rem; color: var(--gray); line-height: 1.6; }
+  .svc-item:hover .svc-desc { color: rgba(255,255,255,0.6); }
+
+  /* PRICING */
+  .pricing-editorial { background: var(--black); padding: 5rem 5%; }
+  .pricing-editorial .section-label-ed { color: var(--white); }
+  .pricing-editorial .section-header { border-color: rgba(255,255,255,0.15); }
+  .pricing-editorial .section-header span { color: rgba(255,255,255,0.4); }
+  .pricing-cols { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+  .p-left { color: var(--white); }
+  .p-big { font-family: 'Bebas Neue', sans-serif; font-size: 8rem; color: var(--red); line-height: 0.9; }
+  .p-left p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.7; margin-top: 1rem; }
+  .p-table { width: 100%; border-collapse: collapse; }
+  .p-table th { color: rgba(255,255,255,0.35); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: left; padding: 0 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .p-table td { color: rgba(255,255,255,0.75); font-size: 0.88rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: middle; }
+  .p-table td:nth-child(2) { font-weight: 700; color: var(--white); }
+  .p-table td:last-child { color: var(--red); font-weight: 700; }
+  .p-cta { display: inline-block; background: var(--red); color: var(--white); padding: 1rem 2.5rem; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; margin-top: 2.5rem; transition: opacity 0.2s; }
+  .p-cta:hover { opacity: 0.8; }
+
+  /* PROCESS */
+  .process-strip { display: grid; grid-template-columns: repeat(4, 1fr); border: 2px solid var(--black); }
+  .ps-step { padding: 2.5rem 2rem; position: relative; }
+  .ps-step:not(:last-child) { border-right: 1px solid var(--black); }
+  .ps-num { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: var(--light-gray); line-height: 0.85; margin-bottom: 0.5rem; }
+  .ps-title { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+  .ps-desc { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
+
+  /* REVIEWS */
+  .reviews-masonry { columns: 3; gap: 1.5rem; margin-top: 3rem; }
+  .rev-block { break-inside: avoid; margin-bottom: 1.5rem; border: 1.5px solid var(--black); padding: 1.5rem; }
+  .rb-stars { color: var(--red); font-size: 0.85rem; margin-bottom: 0.8rem; }
+  .rb-text { font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-style: italic; color: var(--black); line-height: 1.6; margin-bottom: 0.8rem; }
+  .rb-author { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+
+  /* FAQ */
+  .faq-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 2px solid var(--black); }
+  .faq-item-ed { padding: 2rem; border-bottom: 1px solid var(--black); }
+  .faq-item-ed:nth-child(odd) { border-right: 1px solid var(--black); }
+  .faq-item-ed:last-child, .faq-item-ed:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+  .faq-q-ed { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.03em; margin-bottom: 0.7rem; }
+  .faq-a-ed { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
+
+  /* CTA */
+  .cta-editorial { background: var(--red); padding: 6rem 5%; }
+  .cta-editorial h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 7rem); color: var(--white); line-height: 0.9; margin-bottom: 2rem; letter-spacing: 0.02em; }
+  .cta-editorial p { color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.7; max-width: 500px; margin-bottom: 2.5rem; font-weight: 300; }
+  .btn-white { background: var(--white); color: var(--red); padding: 1rem 2.5rem; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+  .btn-white:hover { opacity: 0.85; }
+
+  footer { background: var(--black); padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  footer p { color: rgba(255,255,255,0.35); font-size: 0.75rem; }
+  footer a { color: rgba(255,255,255,0.5); font-size: 0.75rem; text-decoration: none; }
+  footer a:hover { color: var(--red); }
+
+  @media (max-width: 900px) {
+    .hero-main { grid-template-columns: 1fr; }
+    .svc-list { grid-template-columns: 1fr 1fr; }
+    .pricing-cols { grid-template-columns: 1fr; }
+    .process-strip { grid-template-columns: 1fr 1fr; }
+    .faq-cols { grid-template-columns: 1fr; }
+    .reviews-masonry { columns: 1; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo-text">Assignment<span>Ace</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="mailto:tanishkag2006@gmail.com" class="nav-btn">Get Started</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-top">
+    <p>Academic Writing Experts — UK Students</p>
+    <p>£19 per 1,000 words · 100% Human Written · All Subjects</p>
+    <p>tanishkag2006@gmail.com</p>
+  </div>
+  <div class="hero-main">
+    <div class="hero-left">
+      <div class="hero-issue">Academic Excellence Since Day One</div>
+      <h1>ASSIGN<span>-</span><br>MENT<br><span>ACE</span></h1>
+      <p class="hero-sub-text">"Where every word is written by a human, for a human."</p>
+      <p>Professional academic writing assistance for UK students — paraphrasing, complete rewrites, research, proofreading, and formatting. All subjects. Zero AI.</p>
+      <div class="hero-cta">
+        <a href="mailto:tanishkag2006@gmail.com?subject=Assignment%20Enquiry" class="btn-red">Message Us Now</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="editorial-card">
+        <div class="ec-tag">Our Promise</div>
+        <div class="ec-title">Zero AI. 100% Human.</div>
+        <div class="ec-text">Every piece of work is crafted entirely by experienced human writers. No AI tools, no shortcuts — just genuine academic expertise.</div>
+      </div>
+      <div class="editorial-card">
+        <div class="ec-tag">Plagiarism Free</div>
+        <div class="ec-title">Original Work. Guaranteed.</div>
+        <div class="ec-text">All assignments are checked for plagiarism before delivery. Every piece written fresh from scratch for your specific brief.</div>
+      </div>
+      <div class="price-callout">
+        <div class="pc-label">Starting From</div>
+        <div class="pc-price">£19</div>
+        <div class="pc-sub">per 1,000 words · All subjects covered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-inner">
+    <span class="marquee-item">ZERO AI CONTENT</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">100% HUMAN WRITTEN</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">PLAGIARISM FREE</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">ALL SUBJECTS</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">FAST DELIVERY</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">CONFIDENTIAL</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">UK STUDENTS</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">ZERO AI CONTENT</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">100% HUMAN WRITTEN</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">PLAGIARISM FREE</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">ALL SUBJECTS</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">FAST DELIVERY</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">CONFIDENTIAL</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">UK STUDENTS</span>
+    <span class="marquee-item">·</span>
+  </div>
+</div>
+
+<section class="section" id="services">
+  <div class="section-header">
+    <div class="section-label-ed">Our Services</div>
+    <span>5 Core Services · All Subjects · All Levels</span>
+  </div>
+  <div class="svc-list">
+    <div class="svc-item">
+      <div class="svc-num">01</div>
+      <div class="svc-name">Paraphrasing</div>
+      <div class="svc-desc">Intelligent reworking — retaining meaning, improving clarity and originality.</div>
+    </div>
+    <div class="svc-item">
+      <div class="svc-num">02</div>
+      <div class="svc-name">Proofreading</div>
+      <div class="svc-desc">Meticulous grammar, spelling, punctuation and style correction.</div>
+    </div>
+    <div class="svc-item">
+      <div class="svc-num">03</div>
+      <div class="svc-name">Structure & Format</div>
+      <div class="svc-desc">Academic layout, referencing (APA, Harvard, MLA) and university formatting.</div>
+    </div>
+    <div class="svc-item">
+      <div class="svc-num">04</div>
+      <div class="svc-name">Research Help</div>
+      <div class="svc-desc">Credible sources, literature reviews, argument strengthening.</div>
+    </div>
+    <div class="svc-item">
+      <div class="svc-num">05</div>
+      <div class="svc-name">Complete Rewrite</div>
+      <div class="svc-desc">Full academic redraft — fresh arguments, polished language, submission-ready.</div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-editorial" id="pricing">
+  <div class="section-header">
+    <div class="section-label-ed">Pricing</div>
+    <span>Transparent · No Hidden Fees</span>
+  </div>
+  <div class="pricing-cols">
+    <div class="p-left">
+      <div class="p-big">£19</div>
+      <p>Per 1,000 words. One flat rate — no tiers, no confusion. Scale with your word count.</p>
+    </div>
+    <div>
+      <table class="p-table">
+        <thead><tr><th>Word Count</th><th>Estimated Cost</th><th>Delivery Time</th></tr></thead>
+        <tbody>
+          <tr><td>Up to 1,000 words</td><td>£19</td><td>3 days</td></tr>
+          <tr><td>Up to 2,000 words</td><td>£38</td><td>3 days</td></tr>
+          <tr><td>Up to 3,000 words</td><td>£57</td><td>4 days</td></tr>
+          <tr><td>Up to 4,000 words</td><td>£76</td><td>5 days</td></tr>
+          <tr><td>Up to 5,000 words</td><td>£95</td><td>6 days</td></tr>
+          <tr><td>Up to 6,000 words</td><td>£114</td><td>7 days</td></tr>
+        </tbody>
+      </table>
+      <a href="mailto:tanishkag2006@gmail.com?subject=Custom%20Quote%20Request" class="p-cta">Get a Custom Quote →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="section-header">
+    <div class="section-label-ed">How It Works</div>
+    <span>4 Simple Steps</span>
+  </div>
+  <div class="process-strip">
+    <div class="ps-step"><div class="ps-num">01</div><div class="ps-title">Send Your Brief</div><div class="ps-desc">Email us with subject, word count, guidelines, and deadline.</div></div>
+    <div class="ps-step"><div class="ps-num">02</div><div class="ps-title">Confirm & Quote</div><div class="ps-desc">We confirm pricing and delivery timeline within hours.</div></div>
+    <div class="ps-step"><div class="ps-num">03</div><div class="ps-title">Experts Write</div><div class="ps-desc">Human writers craft your assignment — thoroughly, without AI.</div></div>
+    <div class="ps-step"><div class="ps-num">04</div><div class="ps-title">Receive & Submit</div><div class="ps-desc">Delivered by email. Review and submit with confidence.</div></div>
+  </div>
+</section>
+
+<section class="section" id="reviews" style="background: var(--light-gray);">
+  <div class="section-header">
+    <div class="section-label-ed">Student Reviews</div>
+    <span>Live Review System Coming Soon</span>
+  </div>
+  <div class="reviews-masonry">
+    <div class="rev-block"><div class="rb-stars">★★★★★</div><div class="rb-text">"My essay was completely transformed — academic, professional, and nothing like AI writing. Got a first!"</div><div class="rb-author">Medicine Student, Manchester</div></div>
+    <div class="rev-block"><div class="rb-stars">★★★★★</div><div class="rb-text">"As an international student, English academic writing was a real barrier. Assignment Ace made it professional."</div><div class="rb-author">Business Student, London</div></div>
+    <div class="rev-block"><div class="rb-stars">★★★★★</div><div class="rb-text">"On time, no AI, proper human writing. This is genuine expert academic work. Highly recommend."</div><div class="rb-author">Engineering Student, Sheffield</div></div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="section-header">
+    <div class="section-label-ed">FAQ</div>
+    <span>Common Questions</span>
+  </div>
+  <div class="faq-cols">
+    <div class="faq-item-ed"><div class="faq-q-ed">Is work really AI-free?</div><div class="faq-a-ed">100%. No ChatGPT, no AI tools — ever. Every piece is written entirely by experienced human writers with strong English language expertise.</div></div>
+    <div class="faq-item-ed"><div class="faq-q-ed">How do I order?</div><div class="faq-a-ed">Email tanishkag2006@gmail.com with your brief — subject, word count, guidelines, and deadline. We respond promptly.</div></div>
+    <div class="faq-item-ed"><div class="faq-q-ed">What subjects?</div><div class="faq-a-ed">All of them — arts, sciences, business, law, engineering, healthcare, and everything else studied in UK colleges.</div></div>
+    <div class="faq-item-ed"><div class="faq-q-ed">Is my data confidential?</div><div class="faq-a-ed">Strictly. All work and personal information is completely private and never shared with third parties.</div></div>
+    <div class="faq-item-ed"><div class="faq-q-ed">Plagiarism policy?</div><div class="faq-a-ed">Every piece is checked before delivery. We write everything from scratch — originality is guaranteed.</div></div>
+    <div class="faq-item-ed"><div class="faq-q-ed">What if I need changes?</div><div class="faq-a-ed">Contact us directly and we'll address your concerns and make adjustments to get you fully satisfied.</div></div>
+  </div>
+</section>
+
+<section class="cta-editorial">
+  <h2>ACE YOUR<br>ASSIGNMENT.</h2>
+  <p>Send us your brief today and let our team of expert human writers deliver work you're proud to submit.</p>
+  <a href="mailto:tanishkag2006@gmail.com?subject=Assignment%20Enquiry%20-%20Assignment%20Ace" class="btn-white">Message Us Now</a>
+</section>
+
+<footer>
+  <a href="#" style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:white;text-decoration:none;letter-spacing:0.05em;">Assignment<span style="color:#e03131">Ace</span></a>
+  <p>© 2025 Assignment Ace. All rights reserved.</p>
+  <a href="mailto:tanishkag2006@gmail.com">tanishkag2006@gmail.com</a>
+</footer>
+</body>
+</html>
