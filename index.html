@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Assignment Ace — Academic Writing Experts</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root {
     --black: #0a0a0a;
@@ -27,7 +28,7 @@
   .nav-btn { background: var(--red); color: var(--white); padding: 0.5rem 1.2rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; }
   .nav-btn:hover { opacity: 0.8; }
 
-  /* HERO — EDITORIAL GRID */
+  /* HERO */
   .hero { padding-top: 5rem; display: grid; grid-template-rows: auto 1fr; min-height: 100vh; }
   .hero-top { background: var(--black); padding: 1rem 5%; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; }
   .hero-top p { color: rgba(255,255,255,0.4); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -89,6 +90,30 @@
   .p-cta { display: inline-block; background: var(--red); color: var(--white); padding: 1rem 2.5rem; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; margin-top: 2.5rem; transition: opacity 0.2s; }
   .p-cta:hover { opacity: 0.8; }
 
+  /* RUSH PRICING */
+  .rush-section { background: #111; padding: 4rem 5%; }
+  .rush-section .section-header { border-color: rgba(255,255,255,0.1); margin-bottom: 1rem; }
+  .rush-section .section-label-ed { color: var(--red); }
+  .rush-section .section-header span { color: rgba(255,255,255,0.35); }
+  .rush-note { color: rgba(255,255,255,0.45); font-size: 0.82rem; margin-bottom: 2rem; line-height: 1.6; }
+  .rush-note strong { color: var(--red); }
+  .rush-table { width: 100%; border-collapse: collapse; }
+  .rush-table th { color: rgba(255,255,255,0.35); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; text-align: left; padding: 0.6rem 0.8rem; border-bottom: 2px solid rgba(255,255,255,0.08); white-space: nowrap; }
+  .rush-table td { font-size: 0.82rem; padding: 0.85rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+  .rush-table tr:last-child td { border-bottom: none; }
+  .rush-table td:first-child { color: rgba(255,255,255,0.7); }
+  .rush-table td.normal { color: rgba(255,255,255,0.5); font-size: 0.78rem; }
+  .rush-table td.rush { color: #fff; font-weight: 600; }
+  .rush-table td.rush-price { color: var(--red); font-weight: 700; }
+  .rush-table td.na { color: rgba(255,255,255,0.15); font-size: 0.75rem; text-align: center; }
+  .rush-badge { display: inline-block; background: var(--red); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.45rem; letter-spacing: 0.06em; text-transform: uppercase; margin-left: 0.3rem; vertical-align: middle; }
+  .rush-tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .rush-tab { background: none; border: none; color: rgba(255,255,255,0.35); font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.08em; padding: 0.6rem 1.5rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .rush-tab.active { color: var(--red); border-bottom-color: var(--red); }
+  .rush-tab:hover { color: rgba(255,255,255,0.7); }
+  .rush-panel { display: none; padding-top: 1.5rem; }
+  .rush-panel.active { display: block; }
+
   /* PROCESS */
   .process-strip { display: grid; grid-template-columns: repeat(4, 1fr); border: 2px solid var(--black); }
   .ps-step { padding: 2.5rem 2rem; position: relative; }
@@ -97,12 +122,47 @@
   .ps-title { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
   .ps-desc { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
 
-  /* REVIEWS */
-  .reviews-masonry { columns: 3; gap: 1.5rem; margin-top: 3rem; }
-  .rev-block { break-inside: avoid; margin-bottom: 1.5rem; border: 1.5px solid var(--black); padding: 1.5rem; }
+  /* REVIEWS SECTION */
+  .reviews-section { background: var(--light-gray); padding: 5rem 5%; }
+  .reviews-section .section-header { border-color: var(--black); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .rev-block { break-inside: avoid; border: 1.5px solid var(--black); padding: 1.5rem; background: var(--white); }
   .rb-stars { color: var(--red); font-size: 0.85rem; margin-bottom: 0.8rem; }
   .rb-text { font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-style: italic; color: var(--black); line-height: 1.6; margin-bottom: 0.8rem; }
+  .rb-meta { display: flex; flex-direction: column; gap: 0.2rem; }
   .rb-author { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+  .rb-subject { font-size: 0.7rem; color: var(--gray); }
+  .reviews-loading { text-align: center; padding: 3rem; color: var(--gray); font-size: 0.88rem; }
+  .reviews-empty { text-align: center; padding: 3rem; color: var(--gray); font-size: 0.88rem; border: 1.5px dashed var(--gray); }
+
+  /* REVIEW FORM */
+  .review-form-section { background: var(--black); padding: 5rem 5%; }
+  .review-form-section .section-header { border-color: rgba(255,255,255,0.15); }
+  .review-form-section .section-label-ed { color: var(--white); }
+  .review-form-section .section-header span { color: rgba(255,255,255,0.4); }
+  .rf-note { color: rgba(255,255,255,0.4); font-size: 0.82rem; margin-bottom: 2.5rem; line-height: 1.6; }
+  .review-form { max-width: 700px; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .rf-full { grid-column: span 2; }
+  .review-form label { display: block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.4rem; font-weight: 600; }
+  .review-form input, .review-form textarea, .review-form select {
+    width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white); padding: 0.75rem 1rem; font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem; outline: none; transition: border-color 0.2s;
+  }
+  .review-form input:focus, .review-form textarea:focus, .review-form select:focus { border-color: var(--red); }
+  .review-form textarea { resize: vertical; min-height: 100px; }
+  .review-form select option { background: #1a1a1a; }
+  .star-selector { display: flex; gap: 0.5rem; flex-direction: row-reverse; justify-content: flex-end; }
+  .star-selector input { display: none; }
+  .star-selector label { font-size: 1.8rem; cursor: pointer; color: rgba(255,255,255,0.2); transition: color 0.15s; letter-spacing: 0.1rem; }
+  .star-selector input:checked ~ label,
+  .star-selector label:hover,
+  .star-selector label:hover ~ label { color: var(--red); }
+  .rf-submit { background: var(--red); color: var(--white); border: none; padding: 0.9rem 2.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; }
+  .rf-submit:hover { opacity: 0.8; }
+  .rf-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+  .rf-success { display: none; background: rgba(224,49,49,0.1); border: 1px solid var(--red); color: rgba(255,255,255,0.8); padding: 1rem 1.5rem; font-size: 0.85rem; margin-top: 1rem; line-height: 1.6; grid-column: span 2; }
+  .rf-error { display: none; background: rgba(255,100,100,0.1); border: 1px solid rgba(255,100,100,0.4); color: rgba(255,150,150,0.9); padding: 1rem 1.5rem; font-size: 0.85rem; margin-top: 1rem; grid-column: span 2; }
 
   /* FAQ */
   .faq-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 2px solid var(--black); }
@@ -130,8 +190,10 @@
     .pricing-cols { grid-template-columns: 1fr; }
     .process-strip { grid-template-columns: 1fr 1fr; }
     .faq-cols { grid-template-columns: 1fr; }
-    .reviews-masonry { columns: 1; }
+    .review-form { grid-template-columns: 1fr; }
+    .rf-full, .rf-success, .rf-error { grid-column: span 1; }
     .nav-links { display: none; }
+    .rush-tabs { flex-wrap: wrap; }
   }
 </style>
 </head>
@@ -145,14 +207,14 @@
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="mailto:tanishka230306@gmail.com" class="nav-btn">Get Started</a>
+  <a href="mailto:assignment.ace23@gmail.com" class="nav-btn">Get Started</a>
 </nav>
 
 <section class="hero">
   <div class="hero-top">
     <p>Academic Writing Experts — UK Students</p>
-    <p>£19 per 1,000 words · 100% Human Written · All Subjects</p>
-    <p>tanishka230306@gmail.com</p>
+    <p>£22 per 1,000 words · 100% Human Written · All Subjects</p>
+    <p>assignment.ace23@gmail.com</p>
   </div>
   <div class="hero-main">
     <div class="hero-left">
@@ -161,7 +223,7 @@
       <p class="hero-sub-text">"Where every word is written by a human, for a human."</p>
       <p>Professional academic writing assistance for UK students — paraphrasing, complete rewrites, research, proofreading, and formatting. All subjects. Zero AI.</p>
       <div class="hero-cta">
-        <a href="mailto:tanishka230306@gmail.com?subject=Assignment%20Enquiry" class="btn-red">Message Us Now</a>
+        <a href="mailto:assignment.ace23@gmail.com?subject=Assignment%20Enquiry" class="btn-red">Message Us Now</a>
       </div>
     </div>
     <div class="hero-right">
@@ -177,7 +239,7 @@
       </div>
       <div class="price-callout">
         <div class="pc-label">Starting From</div>
-        <div class="pc-price">£19</div>
+        <div class="pc-price">£22</div>
         <div class="pc-sub">per 1,000 words · All subjects covered</div>
       </div>
     </div>
@@ -186,71 +248,39 @@
 
 <div class="marquee">
   <div class="marquee-inner">
-    <span class="marquee-item">ZERO AI CONTENT</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">100% HUMAN WRITTEN</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">PLAGIARISM FREE</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">ALL SUBJECTS</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">FAST DELIVERY</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">CONFIDENTIAL</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">UK STUDENTS</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">ZERO AI CONTENT</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">100% HUMAN WRITTEN</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">PLAGIARISM FREE</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">ALL SUBJECTS</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">FAST DELIVERY</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">CONFIDENTIAL</span>
-    <span class="marquee-item">·</span>
-    <span class="marquee-item">UK STUDENTS</span>
-    <span class="marquee-item">·</span>
+    <span class="marquee-item">ZERO AI CONTENT</span><span class="marquee-item">·</span>
+    <span class="marquee-item">100% HUMAN WRITTEN</span><span class="marquee-item">·</span>
+    <span class="marquee-item">PLAGIARISM FREE</span><span class="marquee-item">·</span>
+    <span class="marquee-item">ALL SUBJECTS</span><span class="marquee-item">·</span>
+    <span class="marquee-item">FAST DELIVERY</span><span class="marquee-item">·</span>
+    <span class="marquee-item">CONFIDENTIAL</span><span class="marquee-item">·</span>
+    <span class="marquee-item">UK STUDENTS</span><span class="marquee-item">·</span>
+    <span class="marquee-item">ZERO AI CONTENT</span><span class="marquee-item">·</span>
+    <span class="marquee-item">100% HUMAN WRITTEN</span><span class="marquee-item">·</span>
+    <span class="marquee-item">PLAGIARISM FREE</span><span class="marquee-item">·</span>
+    <span class="marquee-item">ALL SUBJECTS</span><span class="marquee-item">·</span>
+    <span class="marquee-item">FAST DELIVERY</span><span class="marquee-item">·</span>
+    <span class="marquee-item">CONFIDENTIAL</span><span class="marquee-item">·</span>
+    <span class="marquee-item">UK STUDENTS</span><span class="marquee-item">·</span>
   </div>
 </div>
 
+<!-- SERVICES -->
 <section class="section" id="services">
   <div class="section-header">
     <div class="section-label-ed">Our Services</div>
     <span>5 Core Services · All Subjects · All Levels</span>
   </div>
   <div class="svc-list">
-    <div class="svc-item">
-      <div class="svc-num">01</div>
-      <div class="svc-name">Paraphrasing</div>
-      <div class="svc-desc">Intelligent reworking — retaining meaning, improving clarity and originality.</div>
-    </div>
-    <div class="svc-item">
-      <div class="svc-num">02</div>
-      <div class="svc-name">Proofreading</div>
-      <div class="svc-desc">Meticulous grammar, spelling, punctuation and style correction.</div>
-    </div>
-    <div class="svc-item">
-      <div class="svc-num">03</div>
-      <div class="svc-name">Structure & Format</div>
-      <div class="svc-desc">Academic layout, referencing (APA, Harvard, MLA) and university formatting.</div>
-    </div>
-    <div class="svc-item">
-      <div class="svc-num">04</div>
-      <div class="svc-name">Research Help</div>
-      <div class="svc-desc">Credible sources, literature reviews, argument strengthening.</div>
-    </div>
-    <div class="svc-item">
-      <div class="svc-num">05</div>
-      <div class="svc-name">Complete Rewrite</div>
-      <div class="svc-desc">Full academic redraft — fresh arguments, polished language, submission-ready.</div>
-    </div>
+    <div class="svc-item"><div class="svc-num">01</div><div class="svc-name">Paraphrasing</div><div class="svc-desc">Intelligent reworking — retaining meaning, improving clarity and originality.</div></div>
+    <div class="svc-item"><div class="svc-num">02</div><div class="svc-name">Proofreading</div><div class="svc-desc">Meticulous grammar, spelling, punctuation and style correction.</div></div>
+    <div class="svc-item"><div class="svc-num">03</div><div class="svc-name">Structure & Format</div><div class="svc-desc">Academic layout, referencing (APA, Harvard, MLA) and university formatting.</div></div>
+    <div class="svc-item"><div class="svc-num">04</div><div class="svc-name">Research Help</div><div class="svc-desc">Credible sources, literature reviews, argument strengthening.</div></div>
+    <div class="svc-item"><div class="svc-num">05</div><div class="svc-name">Complete Rewrite</div><div class="svc-desc">Full academic redraft — fresh arguments, polished language, submission-ready.</div></div>
   </div>
 </section>
 
+<!-- STANDARD PRICING -->
 <section class="pricing-editorial" id="pricing">
   <div class="section-header">
     <div class="section-label-ed">Pricing</div>
@@ -258,26 +288,93 @@
   </div>
   <div class="pricing-cols">
     <div class="p-left">
-      <div class="p-big">£19</div>
+      <div class="p-big">£22</div>
       <p>Per 1,000 words. One flat rate — no tiers, no confusion. Scale with your word count.</p>
     </div>
     <div>
       <table class="p-table">
         <thead><tr><th>Word Count</th><th>Estimated Cost</th><th>Delivery Time</th></tr></thead>
         <tbody>
-          <tr><td>Up to 1,000 words</td><td>£19</td><td>3 days</td></tr>
-          <tr><td>Up to 2,000 words</td><td>£38</td><td>3 days</td></tr>
-          <tr><td>Up to 3,000 words</td><td>£57</td><td>4 days</td></tr>
-          <tr><td>Up to 4,000 words</td><td>£76</td><td>5 days</td></tr>
-          <tr><td>Up to 5,000 words</td><td>£95</td><td>6 days</td></tr>
-          <tr><td>Up to 6,000 words</td><td>£114</td><td>7 days</td></tr>
+          <tr><td>Up to 1,000 words</td><td>£22</td><td>3 days</td></tr>
+          <tr><td>Up to 2,000 words</td><td>£44</td><td>3 days</td></tr>
+          <tr><td>Up to 3,000 words</td><td>£66</td><td>4 days</td></tr>
+          <tr><td>Up to 4,000 words</td><td>£88</td><td>5 days</td></tr>
+          <tr><td>Up to 5,000 words</td><td>£110</td><td>6 days</td></tr>
+          <tr><td>Up to 6,000 words</td><td>£132</td><td>7 days</td></tr>
         </tbody>
       </table>
-      <a href="mailto:tanishka230306@gmail.com?subject=Custom%20Quote%20Request" class="p-cta">Get a Custom Quote →</a>
+      <a href="mailto:assignment.ace23@gmail.com?subject=Custom%20Quote%20Request" class="p-cta">Get a Custom Quote →</a>
     </div>
   </div>
 </section>
 
+<!-- RUSH PRICING -->
+<section class="rush-section" id="rush">
+  <div class="section-header">
+    <div class="section-label-ed">Rush Delivery <span class="rush-badge">Express</span></div>
+    <span>Need It Faster? We've Got You.</span>
+  </div>
+  <p class="rush-note">Need your assignment sooner than the standard timeline? We offer express delivery — the earlier you need it, the higher the priority surcharge. <strong>Minimum turnaround is always 3 days.</strong></p>
+
+  <div class="rush-tabs">
+    <button class="rush-tab active" onclick="showRushTab('3k')">3,000 Words</button>
+    <button class="rush-tab" onclick="showRushTab('4k')">4,000 Words</button>
+    <button class="rush-tab" onclick="showRushTab('5k')">5,000 Words</button>
+    <button class="rush-tab" onclick="showRushTab('6k')">6,000 Words</button>
+  </div>
+
+  <!-- 3000 words -->
+  <div class="rush-panel active" id="rush-3k">
+    <table class="rush-table">
+      <thead><tr><th>Delivery Option</th><th>Days</th><th>Base Price</th><th>Rush Surcharge</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Standard</td><td class="normal">4 days</td><td class="normal">£66</td><td class="normal">—</td><td class="rush-price">£66</td></tr>
+        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="rush">3 days</td><td class="normal">£66</td><td class="normal">+£14</td><td class="rush-price">£80</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 4000 words -->
+  <div class="rush-panel" id="rush-4k">
+    <table class="rush-table">
+      <thead><tr><th>Delivery Option</th><th>Days</th><th>Base Price</th><th>Rush Surcharge</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Standard</td><td class="normal">5 days</td><td class="normal">£88</td><td class="normal">—</td><td class="rush-price">£88</td></tr>
+        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="rush">4 days</td><td class="normal">£88</td><td class="normal">+£18</td><td class="rush-price">£106</td></tr>
+        <tr><td>2 Days Early <span class="rush-badge">+36%</span></td><td class="rush">3 days</td><td class="normal">£88</td><td class="normal">+£32</td><td class="rush-price">£120</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5000 words -->
+  <div class="rush-panel" id="rush-5k">
+    <table class="rush-table">
+      <thead><tr><th>Delivery Option</th><th>Days</th><th>Base Price</th><th>Rush Surcharge</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Standard</td><td class="normal">6 days</td><td class="normal">£110</td><td class="normal">—</td><td class="rush-price">£110</td></tr>
+        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="rush">5 days</td><td class="normal">£110</td><td class="normal">+£23</td><td class="rush-price">£133</td></tr>
+        <tr><td>2 Days Early <span class="rush-badge">+36%</span></td><td class="rush">4 days</td><td class="normal">£110</td><td class="normal">+£40</td><td class="rush-price">£150</td></tr>
+        <tr><td>3 Days Early <span class="rush-badge">+48%</span></td><td class="rush">3 days</td><td class="normal">£110</td><td class="normal">+£53</td><td class="rush-price">£163</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 6000 words -->
+  <div class="rush-panel" id="rush-6k">
+    <table class="rush-table">
+      <thead><tr><th>Delivery Option</th><th>Days</th><th>Base Price</th><th>Rush Surcharge</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Standard</td><td class="normal">7 days</td><td class="normal">£132</td><td class="normal">—</td><td class="rush-price">£132</td></tr>
+        <tr><td>1 Day Early <span class="rush-badge">+21%</span></td><td class="rush">6 days</td><td class="normal">£132</td><td class="normal">+£28</td><td class="rush-price">£160</td></tr>
+        <tr><td>2 Days Early <span class="rush-badge">+36%</span></td><td class="rush">5 days</td><td class="normal">£132</td><td class="normal">+£48</td><td class="rush-price">£180</td></tr>
+        <tr><td>3 Days Early <span class="rush-badge">+48%</span></td><td class="rush">4 days</td><td class="normal">£132</td><td class="normal">+£63</td><td class="rush-price">£195</td></tr>
+        <tr><td>4 Days Early <span class="rush-badge">+60%</span></td><td class="rush">3 days</td><td class="normal">£132</td><td class="normal">+£79</td><td class="rush-price">£211</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
 <section class="section" id="how">
   <div class="section-header">
     <div class="section-label-ed">How It Works</div>
@@ -291,18 +388,64 @@
   </div>
 </section>
 
-<section class="section" id="reviews" style="background: var(--light-gray);">
+<!-- LIVE REVIEWS (Supabase) -->
+<section class="reviews-section" id="reviews">
   <div class="section-header">
     <div class="section-label-ed">Student Reviews</div>
-    <span>Live Review System Coming Soon</span>
+    <span>Verified · Real Students · Live</span>
   </div>
-  <div class="reviews-masonry">
-    <div class="rev-block"><div class="rb-stars">★★★★★</div><div class="rb-text">"My essay was completely transformed — academic, professional, and nothing like AI writing. Got a first!"</div><div class="rb-author">Medicine Student, Manchester</div></div>
-    <div class="rev-block"><div class="rb-stars">★★★★★</div><div class="rb-text">"As an international student, English academic writing was a real barrier. Assignment Ace made it professional."</div><div class="rb-author">Business Student, London</div></div>
-    <div class="rev-block"><div class="rb-stars">★★★★★</div><div class="rb-text">"On time, no AI, proper human writing. This is genuine expert academic work. Highly recommend."</div><div class="rb-author">Engineering Student, Sheffield</div></div>
+  <div class="reviews-grid" id="reviews-container">
+    <div class="reviews-loading">Loading reviews...</div>
   </div>
 </section>
 
+<!-- SUBMIT REVIEW (Supabase) -->
+<section class="review-form-section" id="submit-review">
+  <div class="section-header">
+    <div class="section-label-ed">Leave A Review</div>
+    <span>Share Your Experience</span>
+  </div>
+  <p class="rf-note">Worked with us? We'd love to hear about your experience. Reviews are verified and published after a brief check — usually within 24 hours.</p>
+  <form class="review-form" id="reviewForm" onsubmit="submitReview(event)">
+    <div>
+      <label>Your Name *</label>
+      <input type="text" id="rf-name" placeholder="e.g. Alex K." required maxlength="60">
+    </div>
+    <div>
+      <label>University / College</label>
+      <input type="text" id="rf-uni" placeholder="e.g. University of Manchester" maxlength="80">
+    </div>
+    <div>
+      <label>Subject / Course</label>
+      <input type="text" id="rf-subject" placeholder="e.g. Business Management" maxlength="80">
+    </div>
+    <div>
+      <label>Rating *</label>
+      <div class="star-selector">
+        <input type="radio" id="s5" name="rating" value="5"><label for="s5">★</label>
+        <input type="radio" id="s4" name="rating" value="4"><label for="s4">★</label>
+        <input type="radio" id="s3" name="rating" value="3"><label for="s3">★</label>
+        <input type="radio" id="s2" name="rating" value="2"><label for="s2">★</label>
+        <input type="radio" id="s1" name="rating" value="1"><label for="s1">★</label>
+      </div>
+    </div>
+    <div class="rf-full">
+      <label>Your Review *</label>
+      <textarea id="rf-text" placeholder="Tell us about your experience with Assignment Ace..." required minlength="20" maxlength="600"></textarea>
+    </div>
+    <div class="rf-full">
+      <button type="submit" class="rf-submit" id="rf-btn">Submit Review</button>
+    </div>
+    <div class="rf-success" id="rf-success">
+      ✓ Thank you! Your review has been submitted and will appear after a quick verification — usually within 24 hours.
+    </div>
+    <div class="rf-error" id="rf-error">
+      Something went wrong. Please try again or email us directly at assignment.ace23@gmail.com
+    </div>
+  </form>
+</section>
+
+<!-- FAQ -->
 <section class="section" id="faq">
   <div class="section-header">
     <div class="section-label-ed">FAQ</div>
@@ -310,7 +453,7 @@
   </div>
   <div class="faq-cols">
     <div class="faq-item-ed"><div class="faq-q-ed">Is work really AI-free?</div><div class="faq-a-ed">100%. No ChatGPT, no AI tools — ever. Every piece is written entirely by experienced human writers with strong English language expertise.</div></div>
-    <div class="faq-item-ed"><div class="faq-q-ed">How do I order?</div><div class="faq-a-ed">Email tanishka230306@gmail.com with your brief — subject, word count, guidelines, and deadline. We respond promptly.</div></div>
+    <div class="faq-item-ed"><div class="faq-q-ed">How do I order?</div><div class="faq-a-ed">Email assignment.ace23@gmail.com with your brief — subject, word count, guidelines, and deadline. We respond promptly.</div></div>
     <div class="faq-item-ed"><div class="faq-q-ed">What subjects?</div><div class="faq-a-ed">All of them — arts, sciences, business, law, engineering, healthcare, and everything else studied in UK colleges.</div></div>
     <div class="faq-item-ed"><div class="faq-q-ed">Is my data confidential?</div><div class="faq-a-ed">Strictly. All work and personal information is completely private and never shared with third parties.</div></div>
     <div class="faq-item-ed"><div class="faq-q-ed">Plagiarism policy?</div><div class="faq-a-ed">Every piece is checked before delivery. We write everything from scratch — originality is guaranteed.</div></div>
@@ -318,16 +461,116 @@
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-editorial">
   <h2>ACE YOUR<br>ASSIGNMENT.</h2>
   <p>Send us your brief today and let our team of expert human writers deliver work you're proud to submit.</p>
-  <a href="mailto:tanishka230306@gmail.com?subject=Assignment%20Enquiry%20-%20Assignment%20Ace" class="btn-white">Message Us Now</a>
+  <a href="mailto:assignment.ace23@gmail.com?subject=Assignment%20Enquiry%20-%20Assignment%20Ace" class="btn-white">Message Us Now</a>
 </section>
 
 <footer>
   <a href="#" style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:white;text-decoration:none;letter-spacing:0.05em;">Assignment<span style="color:#e03131">Ace</span></a>
   <p>© 2025 Assignment Ace. All rights reserved.</p>
-  <a href="mailto:tanishka230306@gmail.com">tanishka230306@gmail.com</a>
+  <a href="mailto:assignment.ace23@gmail.com">assignment.ace23@gmail.com</a>
 </footer>
+
+<script>
+  // ── Supabase Init ──────────────────────────────────────────────
+  const { createClient } = supabase;
+  const sb = createClient(
+    'https://xcprdszetwsbfttpqzch.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjcHJkc3pldHdzYmZ0dHBxemNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNzEzMDcsImV4cCI6MjA5NDk0NzMwN30.dICtZyPY88TpbT8fsQnpEyiK-quWWfnPUPNCgU9kU3A'
+  );
+
+  // ── Load Reviews ───────────────────────────────────────────────
+  async function loadReviews() {
+    const container = document.getElementById('reviews-container');
+    try {
+      const { data, error } = await sb
+        .from('reviews')
+        .select('name, university, subject, rating, review_text, created_at')
+        .eq('approved', true)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      if (!data || data.length === 0) {
+        container.innerHTML = '<div class="reviews-empty">No reviews yet — be the first to share your experience!</div>';
+        return;
+      }
+
+      container.innerHTML = data.map(r => `
+        <div class="rev-block">
+          <div class="rb-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+          <div class="rb-text">"${escHtml(r.review_text)}"</div>
+          <div class="rb-meta">
+            <div class="rb-author">${escHtml(r.name)}</div>
+            ${r.university || r.subject ? `<div class="rb-subject">${[r.subject, r.university].filter(Boolean).map(escHtml).join(' · ')}</div>` : ''}
+          </div>
+        </div>
+      `).join('');
+    } catch (e) {
+      container.innerHTML = '<div class="reviews-empty">Could not load reviews right now. Please refresh the page.</div>';
+    }
+  }
+
+  // ── Submit Review ──────────────────────────────────────────────
+  async function submitReview(e) {
+    e.preventDefault();
+    const btn = document.getElementById('rf-btn');
+    const successEl = document.getElementById('rf-success');
+    const errorEl = document.getElementById('rf-error');
+    const ratingEl = document.querySelector('input[name="rating"]:checked');
+
+    successEl.style.display = 'none';
+    errorEl.style.display = 'none';
+
+    if (!ratingEl) {
+      errorEl.textContent = 'Please select a star rating before submitting.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    try {
+      const { error } = await sb.from('reviews').insert({
+        name: document.getElementById('rf-name').value.trim(),
+        university: document.getElementById('rf-uni').value.trim() || null,
+        subject: document.getElementById('rf-subject').value.trim() || null,
+        rating: parseInt(ratingEl.value),
+        review_text: document.getElementById('rf-text').value.trim(),
+        approved: false
+      });
+
+      if (error) throw error;
+
+      successEl.style.display = 'block';
+      document.getElementById('reviewForm').reset();
+    } catch (err) {
+      errorEl.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Submit Review';
+    }
+  }
+
+  // ── Rush Pricing Tabs ──────────────────────────────────────────
+  function showRushTab(key) {
+    document.querySelectorAll('.rush-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.rush-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('rush-' + key).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ── Escape HTML helper ─────────────────────────────────────────
+  function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Init ───────────────────────────────────────────────────────
+  loadReviews();
+</script>
 </body>
 </html>
